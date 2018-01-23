@@ -2,7 +2,8 @@ $primary-color: #da272c;
 .app-task {
     .tarea {
         margin: 0 auto;
-        width: 280px;
+        width: 100%;
+        max-width: 400px;
         border: 2px solid $primary-color;
         position: relative;
         .titulo {
@@ -20,12 +21,21 @@ $primary-color: #da272c;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                &::after {
-                    content: '...';
-                    position: absolute;
-                    bottom: 20px;
-                    right: 20px;
-                }
+                transition: height 1s ease-in-out;
+            }
+            .descripcion.on {
+                height: auto;
+            }
+            .mas-detalle {
+                position: absolute;
+                bottom: 30px;
+                right: 5px;
+                font-size: 30px;
+                color: $primary-color;
+                display: none;
+            }
+            .mas-detalle.active {
+                display: inherit;
             }
         }
         .footer {
@@ -39,4 +49,46 @@ $primary-color: #da272c;
             }
         }
     }
+}
+
+@keyframes mostrar {
+    from {
+        height: 115px;
+    }
+    to {
+        height: 500px;
+    }
+}
+
+@keyframes ocultar {
+    from {
+        height: 500px;
+    }
+    to {
+        height: 115px;
+    }
+}
+
+.mostrar{
+    animation: mostrar 1s ease-in-out;
+    height: 500px;
+}
+
+.ocultar{
+    animation: ocultar 1s ease-in-out;
+}
+
+
+.fader {
+    /*
+    -moz-transition: opacity 0.7s linear;
+    -o-transition: opacity 0.7s linear;
+    -webkit-transition: opacity 0.7s linear;
+     transition: opacity 0.7s linear;
+     */
+}
+
+.fader.fadedOut {
+    //opacity: 0;
+    max-height: auto;
 }
